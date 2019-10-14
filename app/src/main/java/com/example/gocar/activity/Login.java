@@ -1,5 +1,8 @@
 package com.example.gocar.activity;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import com.example.gocar.R;
 import android.app.Activity;
@@ -10,6 +13,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -37,6 +44,8 @@ public class Login extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        getLocationPermission();
 
         inputEmail = (EditText) findViewById(R.id.email);
         inputPassword = (EditText) findViewById(R.id.password);
@@ -176,6 +185,14 @@ public class Login extends Activity {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
+    public void getLocationPermission() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {    //location permission must be granted for versions > Marshmallow
+            if(checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {      //checks whether location permission is granted or not
+                requestPermissions(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 87);
+                //permission is granted only once. It's granted when the app in newly installed on the mobile
+            }
+        }
+    }
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();

@@ -41,22 +41,39 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
-            android:background="@color/cream"
-            android:text="Map"
+            android:text="Show Map"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/edit_round"
             android:textAllCaps="false"
             android:textColor="@color/lightRed"
-            android:textSize="15dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btnFind"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dip"
+            android:text="Find Nearby Vehicles"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/edit_round"
+            android:textAllCaps="false"
+            android:textColor="@color/lightRed"
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dip"
-            android:background="@color/cream"
             android:text="Logout"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/edit_round"
             android:textAllCaps="false"
             android:textColor="@color/lightRed"
-            android:textSize="15dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
 </RelativeLayout>

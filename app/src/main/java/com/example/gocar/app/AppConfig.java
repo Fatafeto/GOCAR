@@ -9,4 +9,8 @@ public class AppConfig {
 
     // Server user register url
     public static String URL_REGISTER = "http://192.168.1.7/android_login_api/register.php";
+
+    //vehicle URL
+    public static String URL_VEHICLE = "http://192.168.1.7/android_login_api/vehicle.php";
+
 }
