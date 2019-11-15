@@ -170,12 +170,13 @@ public class Register extends Activity {
                 Log.d(TAG, "Register Response: " + response.toString());
                 hideDialog();
 
-                try {       //HERE LESSA
+                try {
                     JSONObject jObj = new JSONObject(response);
                     boolean error = jObj.getBoolean("error");
                     if (!error) {
                         // User successfully stored in MySQL
                         // Now store the user in sqlite
+                        String id = jObj.getString("id");
                         String uid = jObj.getString("uid");
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("name");
@@ -186,9 +187,9 @@ public class Register extends Activity {
                         String nationality = user.getString("nationality");
 
                         // Inserting row in users table
-                        db.addUser(name, email, uid, created_at, age, nationality, phone);
+                        db.addUser(id, name, email, uid, created_at, age, nationality, phone);
 
-                        Toast.makeText(getApplicationContext(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "User successfully registered. Try to login now!", Toast.LENGTH_LONG).show();
                         // Launch login activity
                         Intent intent = new Intent(Register.this, Login.class);
                         startActivity(intent);

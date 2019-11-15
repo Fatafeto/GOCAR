@@ -20,7 +20,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Welcome"
-            android:textSize="20dp" />
+            android:textSize="24dp"
+            android:textStyle="bold"
+            android:textColor="@color/colorPrimaryDark"/>
 
         <TextView
             android:id="@+id/name"
@@ -28,13 +30,13 @@
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:textColor="@color/cream"
-            android:textSize="24dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13dp" />
+            android:textSize="16dp" />
 
         <Button
             android:id="@+id/btnMap"
@@ -45,7 +47,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/edit_round"
             android:textAllCaps="false"
-            android:textColor="@color/lightRed"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -58,7 +60,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/edit_round"
             android:textAllCaps="false"
-            android:textColor="@color/lightRed"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -71,7 +73,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/edit_round"
             android:textAllCaps="false"
-            android:textColor="@color/lightRed"
+            android:textColor="@color/colorPrimary"
             android:textSize="20dp"
             android:textStyle="bold" />
     </LinearLayout>

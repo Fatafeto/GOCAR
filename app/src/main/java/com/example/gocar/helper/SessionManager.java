@@ -20,6 +20,8 @@ public class SessionManager {
     // Shared pref mode
     int PRIVATE_MODE = 0;
 
+    String currentUser;
+
     // Shared preferences file name
     private static final String PREF_NAME = "AndroidHiveLogin";
 

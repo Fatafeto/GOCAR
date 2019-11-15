@@ -13,10 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
-
 import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -131,7 +127,6 @@ public class Login extends Activity {
 
                         // Now store the user in SQLite
                         String uid = jObj.getString("uid");
-
                         JSONObject user = jObj.getJSONObject("user");
                         String name = user.getString("name");
                         String email = user.getString("email");
@@ -139,9 +134,6 @@ public class Login extends Activity {
                         String age = user.getString("age");
                         String nationality = user.getString("nationality");
                         String phone = user.getString("phone_no");
-
-                        // Inserting row in users table
-                        db.addUser(name, email, uid, created_at, age, nationality, phone);
 
                         // Launch main activity
                         Intent intent = new Intent(Login.this, Main.class);
@@ -170,7 +162,7 @@ public class Login extends Activity {
         }) {
 
             @Override
-            protected Map<String, String> getParams() {     //NOT SURE
+            protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("email", email);

@@ -17,6 +17,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.gocar.R;
 import com.example.gocar.app.AppConfig;
+import com.example.gocar.helper.SessionManager;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -37,6 +39,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import android.util.Log;
+
 
 public class Vehicles extends AppCompatActivity {
 
@@ -50,7 +54,7 @@ public class Vehicles extends AppCompatActivity {
     public static double userLongitude;
 
     ListView listView;
-    //Button findBtn;
+    Button btnMap;
 
     ArrayList<Car> cars = new ArrayList<Car>();
     ArrayList<Float> carsDistances = new ArrayList<Float>();
@@ -88,19 +92,20 @@ public class Vehicles extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 carIndex = position;
-                Intent myIntent = new Intent(view.getContext(), Map.class);
+                Intent myIntent = new Intent(view.getContext(), CarDetails.class);
                 startActivity(myIntent);
             }
 
         });
 
-        //findBtn = (Button) findViewById(R.id.findBtn);
-        //findBtn.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-           // public void onClick(View v) {
-             //   calculateDistance();
-          //  }
-        //});
+        btnMap = (Button) findViewById(R.id.btnMap);
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent myIntent = new Intent(Vehicles.this, CarsLocations.class);
+                startActivity(myIntent);
+            }
+        });
 
     }
 
@@ -130,13 +135,14 @@ public class Vehicles extends AppCompatActivity {
                     for (int i = 0; i < vehicles.length(); i++) {
                         JSONObject vehicleObject = vehicles.getJSONObject(i);
 
+                        String car_id = vehicleObject.getString("id");
                         String name = vehicleObject.getString("name");
                         int production_year = vehicleObject.getInt("production_year");
                         int fuel_level = vehicleObject.getInt("fuel_level");
                         double longitude = vehicleObject.getDouble("longitude");
                         double latitude = vehicleObject.getDouble("latitude");
                         String image_path = vehicleObject.getString("image_path");
-                        Car car = new Car(name, production_year, fuel_level, longitude, latitude, image_path);
+                        Car car = new Car(car_id, name, production_year, fuel_level, longitude, latitude, image_path);
                         cars.add(car);
 
                     }
@@ -296,7 +302,6 @@ public class Vehicles extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            Context context = getApplicationContext();
 
             View view = getLayoutInflater().inflate(R.layout.image_list, null);
             ImageView imageView = (ImageView) view.findViewById(R.id.imageView);
@@ -310,7 +315,7 @@ public class Vehicles extends AppCompatActivity {
             distanceTextView.setText(distance.get(position));
             yearTextView.setText(year.get(position));
 
-            String path = "http://192.168.1.7/" + imagesPaths.get(position);
+            String path = "http://192.168.1.3/" + imagesPaths.get(position);
             Picasso.get().load(path).into(imageView);
 
             return view;
